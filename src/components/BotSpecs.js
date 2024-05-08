@@ -9,7 +9,7 @@ const botTypeClasses = {
   Captain: "icon star",
 };
 
-function BotSpecs({ bot }) {
+function BotSpecs({ bot, handleBotActionClick, alreadyListedBot }) {
   return (
     <div className="ui segment">
       <div className="ui two column centered grid">
@@ -52,21 +52,15 @@ function BotSpecs({ bot }) {
             </div>
             <button
               className="ui button fluid"
-              onClick={() =>
-                console.log("connect this to a function that shows all bots")
-              }
+              onClick={() => handleBotActionClick(bot, "show-all-bots")}
             >
               Go Back
             </button>
             <button
               className="ui button fluid"
-              onClick={() =>
-                console.log(
-                  "connect this to a function that adds this bot to your bot army list"
-                )
-              }
+              onClick={() => alreadyListedBot ? handleBotActionClick(bot, "delist-bot") : handleBotActionClick(bot, "enlist-bot")}
             >
-              Enlist
+              {alreadyListedBot ? "Delist" : "Enlist"}
             </button>
           </div>
         </div>
